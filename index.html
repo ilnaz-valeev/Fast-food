@@ -1,0 +1,3527 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fastfood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@300&family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #ffeede;
+        font-family: "Montserrat", sans-serif;
+      }
+      .body-div {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #ffeede;
+        margin-top: 50px;
+      }
+
+      .food-selection {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+        max-width: 1010px;
+        margin: 0 auto 50px auto;
+        gap: 50px;
+      }
+      .food {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .food:active {
+        transform: scale(0.98);
+      }
+      .food:hover {
+        transform: scale(1.1);
+        transition: 0.3s;
+      }
+
+      .food .food-name {
+        margin: 0;
+      }
+      /* .food-name {
+      } */
+
+      .food-img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .card-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        max-width: 1010px;
+        margin: 0 auto;
+      }
+      .card {
+        width: 230px;
+        min-height: 500px;
+
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .food-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 15px;
+      }
+      .card-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+      .card-name {
+        margin: 0;
+        padding: 0;
+        margin-top: 15px;
+      }
+      .card-description {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        max-width: 230px;
+      }
+      .card-price {
+        margin: 0;
+        padding: 0;
+        margin-top: 8px;
+        padding-left: 5px;
+      }
+      .card-button {
+        color: white;
+        margin: 0;
+        padding: 0;
+        background-color: #d73432;
+        border: none;
+        font-family: "Montserrat", sans-serif;
+        cursor: pointer;
+        margin-top: 15px;
+        padding: 20px;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease;
+      }
+      .card-button:hover {
+        transform: scale(1.05);
+      }
+      .card-button:active {
+        transform: scale(0.98);
+      }
+      .card-button:focus {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+
+      /* Стили для кастомных радиокнопок */
+      .card-size {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .size-option {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+
+      .size-option input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .gram {
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        font-size: 12px;
+        color: #888;
+        width: 150px;
+        
+      }
+      .gram-s {
+        margin-left: 5px;
+        
+      }
+      .gram-m {
+        margin-left: 3px;
+      }
+
+      .size-checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        background-color: #f8f8f8;
+        border: 2px solid #ddd;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .size-option input:checked ~ .size-checkmark {
+        background-color: #f8f8f8;
+        border-color: #d73432;
+
+        transform: scale(1.1);
+      }
+
+      .size-checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .size-option input:checked ~ .size-checkmark:after {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body-div">
+      <div class="food-selection">
+        <div class="food" id="pizza">
+          <img src="./ПИЦА.png" alt="" class="food-img" />
+          <h3 class="food-name">Пицца</h3>
+        </div>
+        <div class="food" id="burger">
+          <img src="./БУРГЕР.png" alt="" class="food-img" />
+          <h3 class="food-name">Бургер</h3>
+        </div>
+        <div class="food" id="soup">
+          <img src="./СУПЫ.png" alt="" class="food-img" />
+          <h3 class="food-name">Супы</h3>
+        </div>
+        <div class="food" id="hot">
+          <img src="./ГОРЯЧЕЕ.png" alt="" class="food-img" />
+          <h3 class="food-name">Горячее</h3>
+        </div>
+        <div class="food" id="fish">
+          <img src="./РЫБА.png" alt="" class="food-img" />
+          <h3 class="food-name">Рыба</h3>
+        </div>
+        <div class="food" id="sushi">
+          <img src="./СУШИ.png" alt="" class="food-img" />
+          <h3 class="food-name">Суши</h3>
+        </div>
+        <div class="food" id="dessert">
+          <img src="./ДЕСЕРТ.png" alt="" class="food-img" />
+          <h3 class="food-name">Десерты</h3>
+        </div>
+        <div class="food" id="drink">
+          <img src="./НАПИТКИ.png" alt="" class="food-img" />
+          <h3 class="food-name">Напитки</h3>
+        </div>
+      </div>
+      <div class="food-cards">
+        <!-- Изменено здесь: удалили class="food-card" -->
+        <div class="pizza-card" id="pizza-section">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_1"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_1"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_1"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_2"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_2"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_2"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_3"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_3"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_3"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_4"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_4"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_4"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_5"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_5"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_5"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_6"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_6"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_6"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_7"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_7"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_7"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./piz.png" alt="" class="card-img" />
+                <h3 class="card-name">Римская</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_8"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_8"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_8"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- style="display: none" -->
+        <div class="burger-card" id="burger-section" style="display: none">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_9"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_9"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_9"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_10"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_10"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_10"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_11"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_11"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_11"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_12"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_12"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_12"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_13"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_13"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_13"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_14"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_14"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_14"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_15"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_15"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_15"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_16"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_16"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_16"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="soup-card" id="soup-section" style="display: none">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_17"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_17"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_17"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_18"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_18"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_18"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_19"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_19"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_19"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_20"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_20"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_20"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_21"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_21"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_21"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_22"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_22"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_22"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_23"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_23"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_23"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_24"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_24"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_24"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hot-card" id="hot-section" style="display: none">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_25"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_25"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_25"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_26"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_26"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_26"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_27"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_27"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_27"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_28"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_28"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_28"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_29"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_29"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_29"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_30"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_30"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_30"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_31"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_31"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_31"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_32"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_32"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_32"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fish-card" id="fish-section" style="display: none">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_33"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_33"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_33"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_34"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_34"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_34"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_35"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_35"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_35"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_36"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_36"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_36"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_37"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_37"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_37"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_38"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_38"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_38"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_39"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_39"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_39"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_40"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_40"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_40"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sushi-card" id="sushi-section" style="display: none">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_41"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_41"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_41"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_42"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_42"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_42"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_43"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_43"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_43"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_44"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_44"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_44"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_45"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_45"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_45"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_46"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_46"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_46"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_47"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_47"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_47"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_48"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_48"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_48"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dessert-card" id="dessert-section" style="display: none">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_49"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_49"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_49"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_50"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_50"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_50"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_51"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_51"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_51"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_52"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_52"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_52"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_53"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_53"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_53"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_54"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_54"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_54"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_55"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_55"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_55"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_56"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_56"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_56"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="drink-card" id="drink-section" style="display: none">
+          <div class="card-list">
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_57"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_57"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_57"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_58"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_58"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_58"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_59"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_59"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_59"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_60"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_60"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_60"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_61"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_61"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_61"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_62"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_62"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_62"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_63"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_63"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_63"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="food-card">
+                <img src="./burg.png" alt="" class="card-img" />
+                <h3 class="card-name">Бургер</h3>
+                <p class="card-description">
+                  Разтертые томаты, моцарелла, ветчина, шампиньоны, болгарский
+                  перец, маслины, орегано
+                </p>
+                <div class="card-size">
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_64"
+                      value="small"
+                      checked
+                      data-price="500"
+                    />
+                    <span class="size-checkmark">S</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_64"
+                      value="medium"
+                      data-price="650"
+                    />
+                    <span class="size-checkmark">M</span>
+                  </label>
+                  <label class="size-option">
+                    <input
+                      type="radio"
+                      name="size_64"
+                      value="large"
+                      data-price="800"
+                    />
+                    <span class="size-checkmark">L</span>
+                  </label>
+                </div>
+                    <div class="gram">
+                  <span class="gram-s">200г</span>
+                  <span class="gram-m">300г</span>
+                  <span class="gram-l">400г</span>
+                </div>
+                <p class="card-price">500 р</p>
+                <button class="card-button">Добавить в корзину</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+document.querySelectorAll(".food-card").forEach((card) => {
+  const radioButtons = card.querySelectorAll('input[type="radio"]');
+  const priceElement = card.querySelector(".card-price");
+
+  // Получаем элементы с граммами
+  const gramS = card.querySelector(".gram-s");
+  const gramM = card.querySelector(".gram-m");
+  const gramL = card.querySelector(".gram-l");
+
+  // Устанавливаем начальное состояние
+  gramS.style.visibility = "visible ";
+  gramM.style.visibility = "hidden ";
+  gramL.style.visibility = "hidden";
+
+  // Добавляем обработчики событий для радио кнопок
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      // Обновляем цену
+      priceElement.textContent = this.getAttribute("data-price") + " р";
+
+      // Показываем соответствующий размер и скрываем другие
+      if (this.value === "small") {
+        gramS.style.visibility = "visible ";
+        gramM.style.visibility = "hidden";
+        gramL.style.visibility = "hidden";
+      } else if (this.value === "medium") {
+        gramS.style.visibility = "hidden";
+        gramM.style.visibility = "visible ";
+        gramL.style.visibility = "hidden";
+      } else if (this.value === "large") {
+        gramS.style.visibility = "hidden";
+        gramM.style.visibility = "hidden";
+        gramL.style.visibility = "visible ";
+      }
+    });
+  });
+});
+
+
+      // Получаем все секции с карточками
+      const pizzaSection = document.getElementById("pizza-section");
+      const burgerSection = document.getElementById("burger-section");
+      const soupSection = document.getElementById("soup-section");
+      const hotSection = document.getElementById("hot-section");
+      const fishSection = document.getElementById("fish-section");
+      const sushiSection = document.getElementById("sushi-section");
+      const dessertSection = document.getElementById("dessert-section");
+      const drinkSection = document.getElementById("drink-section");
+
+      // Получаем все категории
+      const pizza = document.getElementById("pizza");
+      const burger = document.getElementById("burger");
+      const soup = document.getElementById("soup");
+      const hot = document.getElementById("hot");
+      const fish = document.getElementById("fish");
+      const sushi = document.getElementById("sushi");
+      const dessert = document.getElementById("dessert");
+      const drink = document.getElementById("drink");
+
+      // При клике на "Пицца", показываем секцию с пиццей
+      pizza.addEventListener("click", function () {
+        pizzaSection.style.display = "block";
+
+        burgerSection.style.display = "none";
+        soupSection.style.display = "none";
+        hotSection.style.display = "none";
+        fishSection.style.display = "none";
+        sushiSection.style.display = "none";
+        dessertSection.style.display = "none";
+        drinkSection.style.display = "none";
+      });
+
+      // При клике на "Бургер", показываем секцию с бургером
+      burger.addEventListener("click", function () {
+        burgerSection.style.display = "block";
+
+        pizzaSection.style.display = "none";
+        soupSection.style.display = "none";
+        hotSection.style.display = "none";
+        fishSection.style.display = "none";
+        sushiSection.style.display = "none";
+        dessertSection.style.display = "none";
+        drinkSection.style.display = "none";
+      });
+
+      // При клике на "Супы", показываем секцию с супами
+      soup.addEventListener("click", function () {
+        soupSection.style.display = "block";
+
+        pizzaSection.style.display = "none";
+        burgerSection.style.display = "none";
+
+        hotSection.style.display = "none";
+        fishSection.style.display = "none";
+        sushiSection.style.display = "none";
+        dessertSection.style.display = "none";
+        drinkSection.style.display = "none";
+      });
+
+      // При клике на "Горячее", показываем секцию с горячими блюдами
+      hot.addEventListener("click", function () {
+        hotSection.style.display = "block";
+
+        pizzaSection.style.display = "none";
+        burgerSection.style.display = "none";
+        soupSection.style.display = "none";
+
+        fishSection.style.display = "none";
+        sushiSection.style.display = "none";
+        dessertSection.style.display = "none";
+        drinkSection.style.display = "none";
+      });
+
+      // При клике на "Рыба", показываем секцию с рыбой
+      fish.addEventListener("click", function () {
+        fishSection.style.display = "block";
+
+        pizzaSection.style.display = "none";
+        burgerSection.style.display = "none";
+        soupSection.style.display = "none";
+        hotSection.style.display = "none";
+
+        sushiSection.style.display = "none";
+        dessertSection.style.display = "none";
+        drinkSection.style.display = "none";
+      });
+
+      // При клике на "Суши", показываем секцию с суши
+      sushi.addEventListener("click", function () {
+        sushiSection.style.display = "block";
+
+        pizzaSection.style.display = "none";
+        burgerSection.style.display = "none";
+        soupSection.style.display = "none";
+        hotSection.style.display = "none";
+        fishSection.style.display = "none";
+
+        dessertSection.style.display = "none";
+        drinkSection.style.display = "none";
+      });
+
+      // При клике на "Десерты", показываем секцию с десертами
+      dessert.addEventListener("click", function () {
+        dessertSection.style.display = "block";
+
+        pizzaSection.style.display = "none";
+        burgerSection.style.display = "none";
+        soupSection.style.display = "none";
+        hotSection.style.display = "none";
+        fishSection.style.display = "none";
+        sushiSection.style.display = "none";
+
+        drinkSection.style.display = "none";
+      });
+
+      // При клике на "Напитки", показываем секцию с напитками
+      drink.addEventListener("click", function () {
+        drinkSection.style.display = "block";
+
+        pizzaSection.style.display = "none";
+        burgerSection.style.display = "none";
+        soupSection.style.display = "none";
+        hotSection.style.display = "none";
+        fishSection.style.display = "none";
+        sushiSection.style.display = "none";
+        dessertSection.style.display = "none";
+      });
+
+      // Получаем все элементы с классом .food
+      const foodItems = document.querySelectorAll(".food");
+
+      // Добавляем обработчик событий для каждого элемента
+      foodItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          // Получаем текстовое название блюда
+          const foodName = this.querySelector(".food-name");
+
+          // Меняем цвет текста на красный для выбранного элемента
+          foodName.style.color = "#d73432";
+
+          // Сбрасываем цвет текста для всех других элементов
+          foodItems.forEach((otherItem) => {
+            if (otherItem !== this) {
+              otherItem.querySelector(".food-name").style.color = ""; // Возвращаем цвет по умолчанию
+            }
+          });
+
+          // Скрываем все секции
+          pizzaSection.style.display = "none";
+          burgerSection.style.display = "none";
+          soupSection.style.display = "none";
+          hotSection.style.display = "none";
+          fishSection.style.display = "none";
+          sushiSection.style.display = "none";
+          dessertSection.style.display = "none";
+          drinkSection.style.display = "none";
+
+          // Показываем соответствующую секцию в зависимости от выбранного элемента
+          switch (this.id) {
+            case "pizza":
+              pizzaSection.style.display = "block";
+              break;
+            case "burger":
+              burgerSection.style.display = "block";
+              break;
+            case "soup":
+              soupSection.style.display = "block";
+              break;
+            case "hot":
+              hotSection.style.display = "block";
+              break;
+            case "fish":
+              fishSection.style.display = "block";
+              break;
+            case "sushi":
+              sushiSection.style.display = "block";
+              break;
+            case "dessert":
+              dessertSection.style.display = "block";
+              break;
+            case "drink":
+              drinkSection.style.display = "block";
+              break;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
