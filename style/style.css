@@ -36,19 +36,22 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 15px 0;
+
             background: var(--light);
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            margin-bottom: 30px;
         }
-        
+
         .header-title {
             color: var(--primary);
             font-size: 28px;
             font-weight: 700;
+            letter-spacing: 0.5px;
         }
+
         
         .nav {
             display: flex;
@@ -89,6 +92,7 @@
             align-items: center;
             gap: 5px;
         }
+
         
         .user-img, .cart-img {
             width: 28px;
