@@ -529,3 +529,14 @@ const products = {
     },
   ],
 };
+
+// Функция для получения корзины из localStorage (если нет — пустой массив)
+function getCart() {
+  const cart = localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : [];
+}
+
+// Функция для сохранения корзины в localStorage
+function saveCart(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}

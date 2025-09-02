@@ -216,7 +216,12 @@
             min-width: 30px;
             text-align: center;
         }
+        .cart-item-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
+        }
         .cart-item-remove {
             background: none;
             border: none;
@@ -389,3 +394,22 @@
                 flex-direction: column;
             }
         }
+.nav-basket {
+  position: relative;
+}
+
+.cart-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #d73432;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}

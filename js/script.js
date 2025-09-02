@@ -201,7 +201,60 @@ foodItems.forEach((item) => {
 
 
 // Функция генерации карточек
-// ...existing code...
+// Функция для добавления товара в корзину
+function addToCart(product, category) {
+  // Получаем текущую корзину из localStorage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  // Проверяем, есть ли уже такой товар в корзине
+  const existingProductIndex = cart.findIndex(
+    item => item.name === product.name && item.category === category
+  );
+  
+  if (existingProductIndex !== -1) {
+    // Если товар уже есть, увеличиваем количество
+    cart[existingProductIndex].quantity += 1;
+  } else {
+    // Если товара нет, добавляем его
+    cart.push({
+      id: Date.now(), // уникальный идентификатор
+      name: product.name,
+      description: product.description,
+      img: product.img,
+      price: product.price,
+      category: category,
+      quantity: 1
+    });
+  }
+  
+  // Сохраняем обновленную корзину в localStorage
+  localStorage.setItem('cart', JSON.stringify(cart));
+  
+  // Показываем уведомление
+//   alert('Товар добавлен в корзину!');
+  
+  // Обновляем счетчик корзины
+  updateCartCounter();
+}
+
+// Функция для обновления счетчика товаров в корзине
+function updateCartCounter() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  
+  // Находим или создаем элемент для отображения количества
+  let cartCounter = document.querySelector('.cart-counter');
+  if (!cartCounter) {
+    cartCounter = document.createElement('span');
+    cartCounter.className = 'cart-counter';
+    document.querySelector('.nav-basket').appendChild(cartCounter);
+  }
+  
+  cartCounter.textContent = totalItems > 0 ? totalItems : '';
+  cartCounter.style.display = totalItems > 0 ? 'block' : 'none';
+}
+
+// Обновляем renderCards для добавления обработчиков событий
 function renderCards(category, sectionId) {
   const section = document.getElementById(sectionId);
   const cardList = section.querySelector(".card-list");
@@ -220,9 +273,19 @@ function renderCards(category, sectionId) {
         <button class="card-button">Добавить в корзину</button>
       </div>
     `;
+    
+    // Добавляем обработчик события для кнопки
+    const addButton = card.querySelector('.card-button');
+    addButton.addEventListener('click', () => {
+      addToCart(product, category);
+    });
+    
     cardList.appendChild(card);
   });
 }
+
+// Вызываем при загрузке страницы для обновления счетчика
+document.addEventListener('DOMContentLoaded', updateCartCounter);
 
 
 // ...existing code...
@@ -240,7 +303,7 @@ renderCards("drink", "drink-section");
 
 document.querySelectorAll('.card-button').forEach(function(cardButton){
     cardButton.addEventListener('click', function(){
-        alert('Товар добавлен в корзину');
+        // alert('Товар добавлен в корзину');
     });
 });
 

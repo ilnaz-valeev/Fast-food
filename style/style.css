@@ -352,4 +352,24 @@
 
 
 
-        
+        .nav-basket {
+  position: relative;
+
+}
+
+.cart-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #d73432;
+  color: white;
+  border-radius: 50%;
+  width: 15px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 7px;
+}
