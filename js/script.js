@@ -1,216 +1,53 @@
+// Добавляем функцию для показа уведомлений (аналог alert, но красивее)
+function showNotification(message, type = "success") {
+  // Создаем элемент уведомления
+  const notification = document.createElement("div");
+  notification.textContent = message;
+  notification.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: ${
+      type === "success" ? "var(--accent)" : "var(--primary)"
+    };
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-hover);
+    z-index: 2100;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  `;
 
+  document.body.appendChild(notification);
 
-      // Получаем все секции с карточками
-      const pizzaSection = document.getElementById("pizza-section");
-      const burgerSection = document.getElementById("burger-section");
-      const soupSection = document.getElementById("soup-section");
-      const hotSection = document.getElementById("hot-section");
-      const fishSection = document.getElementById("fish-section");
-      const sushiSection = document.getElementById("sushi-section");
-      const dessertSection = document.getElementById("dessert-section");
-      const drinkSection = document.getElementById("drink-section");
+  // Показываем уведомление
+  setTimeout(() => {
+    notification.style.opacity = "1";
+    notification.style.transform = "translateY(0)";
+  }, 10);
 
-      // Получаем все категории
-      const pizza = document.getElementById("pizza");
-      const burger = document.getElementById("burger");
-      const soup = document.getElementById("soup");
-      const hot = document.getElementById("hot");
-      const fish = document.getElementById("fish");
-      const sushi = document.getElementById("sushi");
-      const dessert = document.getElementById("dessert");
-      const drink = document.getElementById("drink");
+  // Скрываем уведомление через 3 секунды
+  setTimeout(() => {
+    notification.style.opacity = "0";
+    notification.style.transform = "translateY(20px)";
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 300);
+  }, 3000);
+}
 
-      // При клике на "Пицца", показываем секцию с пиццей
-      pizza.addEventListener("click", function () {
-        pizzaSection.style.display = "block";
-
-        burgerSection.style.display = "none";
-        soupSection.style.display = "none";
-        hotSection.style.display = "none";
-        fishSection.style.display = "none";
-        sushiSection.style.display = "none";
-        dessertSection.style.display = "none";
-        drinkSection.style.display = "none";
-      });
-
-      // При клике на "Бургер", показываем секцию с бургером
-      burger.addEventListener("click", function () {
-        burgerSection.style.display = "block";
-
-        pizzaSection.style.display = "none";
-        soupSection.style.display = "none";
-        hotSection.style.display = "none";
-        fishSection.style.display = "none";
-        sushiSection.style.display = "none";
-        dessertSection.style.display = "none";
-        drinkSection.style.display = "none";
-      });
-
-      // При клике на "Супы", показываем секцию с супами
-      soup.addEventListener("click", function () {
-        soupSection.style.display = "block";
-
-        pizzaSection.style.display = "none";
-        burgerSection.style.display = "none";
-
-        hotSection.style.display = "none";
-        fishSection.style.display = "none";
-        sushiSection.style.display = "none";
-        dessertSection.style.display = "none";
-        drinkSection.style.display = "none";
-      });
-
-      // При клике на "Горячее", показываем секцию с горячими блюдами
-      hot.addEventListener("click", function () {
-        hotSection.style.display = "block";
-
-        pizzaSection.style.display = "none";
-        burgerSection.style.display = "none";
-        soupSection.style.display = "none";
-
-        fishSection.style.display = "none";
-        sushiSection.style.display = "none";
-        dessertSection.style.display = "none";
-        drinkSection.style.display = "none";
-      });
-
-      // При клике на "Рыба", показываем секцию с рыбой
-      fish.addEventListener("click", function () {
-        fishSection.style.display = "block";
-
-        pizzaSection.style.display = "none";
-        burgerSection.style.display = "none";
-        soupSection.style.display = "none";
-        hotSection.style.display = "none";
-
-        sushiSection.style.display = "none";
-        dessertSection.style.display = "none";
-        drinkSection.style.display = "none";
-      });
-
-      // При клике на "Суши", показываем секцию с суши
-      sushi.addEventListener("click", function () {
-        sushiSection.style.display = "block";
-
-        pizzaSection.style.display = "none";
-        burgerSection.style.display = "none";
-        soupSection.style.display = "none";
-        hotSection.style.display = "none";
-        fishSection.style.display = "none";
-
-        dessertSection.style.display = "none";
-        drinkSection.style.display = "none";
-      });
-
-      // При клике на "Десерты", показываем секцию с десертами
-      dessert.addEventListener("click", function () {
-        dessertSection.style.display = "block";
-
-        pizzaSection.style.display = "none";
-        burgerSection.style.display = "none";
-        soupSection.style.display = "none";
-        hotSection.style.display = "none";
-        fishSection.style.display = "none";
-        sushiSection.style.display = "none";
-
-        drinkSection.style.display = "none";
-      });
-
-      // При клике на "Напитки", показываем секцию с напитками
-      drink.addEventListener("click", function () {
-        drinkSection.style.display = "block";
-
-        pizzaSection.style.display = "none";
-        burgerSection.style.display = "none";
-        soupSection.style.display = "none";
-        hotSection.style.display = "none";
-        fishSection.style.display = "none";
-        sushiSection.style.display = "none";
-        dessertSection.style.display = "none";
-      });
-
-      // Получаем все элементы с классом .food
-      // Получаем все элементы с классом .food
-const foodItems = document.querySelectorAll(".food");
-
-// Добавляем обработчик событий для каждого элемента
-foodItems.forEach((item) => {
-  item.addEventListener("click", function () {
-    // Сбрасываем активный класс для всех элементов
-    foodItems.forEach((otherItem) => {
-      otherItem.classList.remove("active");
-    });
-
-    // Добавляем активный класс для выбранного элемента
-    this.classList.add("active");
-
-    // Получаем текстовое название блюда
-    const foodName = this.querySelector(".food-name");
-
-    // Меняем цвет текста на красный для выбранного элемента
-    foodName.style.color = "#d73432";
-
-    // Сбрасываем цвет текста для всех других элементов
-    foodItems.forEach((otherItem) => {
-      if (otherItem !== this) {
-        otherItem.querySelector(".food-name").style.color = ""; // Возвращаем цвет по умолчанию
-      }
-    });
-
-    // Скрываем все секции
-    pizzaSection.style.display = "none";
-    burgerSection.style.display = "none";
-    soupSection.style.display = "none";
-    hotSection.style.display = "none";
-    fishSection.style.display = "none";
-    sushiSection.style.display = "none";
-    dessertSection.style.display = "none";
-    drinkSection.style.display = "none";
-
-    // Показываем соответствующую секцию в зависимости от выбранного элемента
-    switch (this.id) {
-      case "pizza":
-        pizzaSection.style.display = "block";
-        break;
-      case "burger":
-        burgerSection.style.display = "block";
-        break;
-      case "soup":
-        soupSection.style.display = "block";
-        break;
-      case "hot":
-        hotSection.style.display = "block";
-        break;
-      case "fish":
-        fishSection.style.display = "block";
-        break;
-      case "sushi":
-        sushiSection.style.display = "block";
-        break;
-      case "dessert":
-        dessertSection.style.display = "block";
-        break;
-      case "drink":
-        drinkSection.style.display = "block";
-        break;
-    }
-  });
-});
-
-// Пример данных для всех категорий (заполните своими уникальными данными)
-
-
-// Функция генерации карточек
 // Функция для добавления товара в корзину
 function addToCart(product, category) {
   // Получаем текущую корзину из localStorage
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
   // Проверяем, есть ли уже такой товар в корзине
   const existingProductIndex = cart.findIndex(
-    item => item.name === product.name && item.category === category
+    (item) => item.name === product.name && item.category === category
   );
-  
+
   if (existingProductIndex !== -1) {
     // Если товар уже есть, увеличиваем количество
     cart[existingProductIndex].quantity += 1;
@@ -223,87 +60,165 @@ function addToCart(product, category) {
       img: product.img,
       price: product.price,
       category: category,
-      quantity: 1
+      quantity: 1,
     });
   }
-  
+
   // Сохраняем обновленную корзину в localStorage
-  localStorage.setItem('cart', JSON.stringify(cart));
-  
+  localStorage.setItem("cart", JSON.stringify(cart));
+
   // Показываем уведомление
-//   alert('Товар добавлен в корзину!');
-  
+  showNotification("Товар добавлен в корзину!");
+
   // Обновляем счетчик корзины
   updateCartCounter();
 }
 
 // Функция для обновления счетчика товаров в корзине
 function updateCartCounter() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  
+
   // Находим или создаем элемент для отображения количества
-  let cartCounter = document.querySelector('.cart-counter');
-  if (!cartCounter) {
-    cartCounter = document.createElement('span');
-    cartCounter.className = 'cart-counter';
-    document.querySelector('.nav-basket').appendChild(cartCounter);
+  let cartCounter = document.querySelector(".cart-counter");
+  const navBasket = document.querySelector(".nav-basket");
+
+  if (!cartCounter && navBasket) {
+    cartCounter = document.createElement("span");
+    cartCounter.className = "cart-counter";
+    navBasket.appendChild(cartCounter);
   }
-  
-  cartCounter.textContent = totalItems > 0 ? totalItems : '';
-  cartCounter.style.display = totalItems > 0 ? 'block' : 'none';
+
+  if (cartCounter) {
+    if (totalItems > 0) {
+      cartCounter.textContent = totalItems;
+      cartCounter.style.display = "flex";
+    } else {
+      cartCounter.style.display = "none";
+    }
+  }
 }
 
-// Обновляем renderCards для добавления обработчиков событий
+// Функция генерации карточек
 function renderCards(category, sectionId) {
   const section = document.getElementById(sectionId);
+  if (!section) return;
+
   const cardList = section.querySelector(".card-list");
+  if (!cardList) return;
+
   cardList.innerHTML = ""; // Очищаем
 
-  products[category].forEach((product) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <div class="food-card">
-        <img src="${product.img}" alt="${product.name}" class="card-img" />
-        <div class="gram">${product.gram || ""}</div>
-        <h3 class="card-name">${product.name}</h3>
-        <p class="card-description">${product.description}</p>
-        <p class="card-price">${product.price} р</p>
-        <button class="card-button">Добавить в корзину</button>
+  // Проверяем, есть ли товары в этой категории
+  if (products[category] && products[category].length > 0) {
+    products[category].forEach((product) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="food-card">
+          <img src="${product.img}" alt="${product.name}" class="card-img" />
+          <div class="gram">${product.gram || ""}</div>
+          <h3 class="card-name">${product.name}</h3>
+          <p class="card-description">${product.description}</p>
+          <p class="card-price">${product.price} р</p>
+          <button class="card-button">Добавить в корзину</button>
+        </div>
+      `;
+
+      // Добавляем обработчик события для кнопки
+      const addButton = card.querySelector(".card-button");
+      addButton.addEventListener("click", () => {
+        addToCart(product, category);
+      });
+
+      cardList.appendChild(card);
+    });
+  } else {
+    // Если товаров нет, показываем сообщение
+    cardList.innerHTML = `
+      <div class="empty-category">
+        <p>В этой категории пока нет товаров</p>
       </div>
     `;
-    
-    // Добавляем обработчик события для кнопки
-    const addButton = card.querySelector('.card-button');
-    addButton.addEventListener('click', () => {
-      addToCart(product, category);
-    });
-    
-    cardList.appendChild(card);
-  });
+  }
 }
 
-// Вызываем при загрузке страницы для обновления счетчика
-document.addEventListener('DOMContentLoaded', updateCartCounter);
+// Функция для активации категории
+function activateCategory(categoryId) {
+  // Получаем все элементы с классом .food
+  const foodItems = document.querySelectorAll(".food");
 
+  // Сбрасываем активный класс для всех элементов
+  foodItems.forEach((otherItem) => {
+    otherItem.classList.remove("active");
+    otherItem.querySelector(".food-name").style.color = "";
+  });
 
-// ...existing code...
-// Вызов для всех секций (после загрузки страницы)
-renderCards("pizza", "pizza-section");
-renderCards("burger", "burger-section");
-renderCards("soup", "soup-section");
-renderCards("hot", "hot-section");
-renderCards("fish", "fish-section");
-renderCards("sushi", "sushi-section");
-renderCards("dessert", "dessert-section");
-renderCards("drink", "drink-section");
+  // Добавляем активный класс для выбранного элемента
+  const activeItem = document.getElementById(categoryId);
+  if (activeItem) {
+    activeItem.classList.add("active");
+    activeItem.querySelector(".food-name").style.color = "#d73432";
+  }
 
+  // Скрываем все секции
+  const sections = [
+    "pizza-section",
+    "burger-section",
+    "soup-section",
+    "hot-section",
+    "fish-section",
+    "sushi-section",
+    "dessert-section",
+    "drink-section",
+  ];
 
+  sections.forEach((sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) section.style.display = "none";
+  });
 
-document.querySelectorAll('.card-button').forEach(function(cardButton){
-    cardButton.addEventListener('click', function(){
-        // alert('Товар добавлен в корзину');
-    });
+  // Показываем соответствующую секцию
+  const activeSection = document.getElementById(`${categoryId}-section`);
+  if (activeSection) activeSection.style.display = "block";
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener("DOMContentLoaded", function () {
+  // Активируем первую категорию (пиццу) по умолчанию
+  activateCategory("pizza");
+
+  // Рендерим карточки для всех категорий
+  renderCards("pizza", "pizza-section");
+  renderCards("burger", "burger-section");
+  renderCards("soup", "soup-section");
+  renderCards("hot", "hot-section");
+  renderCards("fish", "fish-section");
+  renderCards("sushi", "sushi-section");
+  renderCards("dessert", "dessert-section");
+  renderCards("drink", "drink-section");
+
+  // Добавляем обработчики для категорий с проверкой на существование элементов
+  const categories = [
+    "pizza",
+    "burger",
+    "soup",
+    "hot",
+    "fish",
+    "sushi",
+    "dessert",
+    "drink",
+  ];
+
+  categories.forEach((categoryId) => {
+    const categoryElement = document.getElementById(categoryId);
+    if (categoryElement) {
+      categoryElement.addEventListener("click", () =>
+        activateCategory(categoryId)
+      );
+    }
+  });
+
+  // Обновляем счетчик корзины
+  updateCartCounter();
 });
-
