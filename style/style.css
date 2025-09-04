@@ -1,360 +1,358 @@
 :root {
-  --primary: #E63946;
-  --primary-light: #F8A8AE;
-  --secondary: #F9A826;
-  --neutral-light: #FFF8F0;
-  --neutral: #F1D6B8;
-  --dark: #2D3748;
-  --light: #FFFFFF;
-  --gray: #A0AEC0;
+  --primary: #e63946;
+  --primary-light: #f8a8ae;
+  --secondary: #f9a826;
+  --neutral-light: #fff8f0;
+  --neutral: #f1d6b8;
+  --accent: #7bc8a4;
+  --dark: #2d3748;
+  --light: #ffffff;
+  --gray: #a0aec0;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
   --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
-  
+
   /* Цвета фона для категорий */
-  --pizza-bg: #FFE8E8;
-  --burger-bg: #FFF0E0;
-  --soup-bg: #E6F7FF;
-  --hot-bg: #FFF5E6;
-  --fish-bg: #E0F3FF;
-  --sushi-bg: #FFEEE6;
-  --dessert-bg: #FFE6F2;
-  --drink-bg: #E6F9FF;
+  --pizza-bg: #ffe8e8;
+  --burger-bg: #fff0e0;
+  --soup-bg: #e6f7ff;
+  --hot-bg: #fff5e6;
+  --fish-bg: #e0f3ff;
+  --sushi-bg: #ffeee6;
+  --dessert-bg: #ffe6f2;
+  --drink-bg: #e6f9ff;
   --default-bg: var(--light);
 }
 
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: var(--neutral-light);
-            font-family: "Montserrat", sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .header-div {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--neutral-light);
+  font-family: "Montserrat", sans-serif;
+  color: var(--dark);
+  line-height: 1.6;
+}
 
-            background: var(--light);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            margin-bottom: 30px;
-        }
+.header-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 75px;
+  background: var(--light);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: 30px;
+}
 
-        .header-title {
-            color: var(--primary);
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+.header-title {
+  color: var(--primary);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
 
-        
-        .nav {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 18px;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav a:hover {
-            color: var(--primary);
-        }
-        
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .nav a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-user, .nav-basket {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
+.nav {
+  display: flex;
+  gap: 30px;
+}
 
-        
-        .user-img, .cart-img {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-        }
-        
-        .body-div {
-            padding: 30px 20px;
-        }
-        
-        .food-selection {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-            max-width: 1050px;
-            margin: 0 auto 50px auto;
-            gap: 30px;
-            padding: 20px;
-            border-radius: 20px;
-            background-color: var(--light);
-            box-shadow: var(--shadow);
-        }
-        
-        .food {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 10px 15px;
-            border-radius: 15px;
-        }
-        
-        .food:hover {
-            transform: translateY(-5px);
-            background-color: rgba(233, 106, 116, 0.1);
-        }
-        
-        .food.active {
-            transform: translateY(-3px);
-            background-color: rgba(233, 106, 116, 0.1);
-        }
-        
-        .food.active .food-name {
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .food:active {
-            transform: scale(0.98);
-        }
-        
-        .food .food-name {
-            margin: 10px 0 0 0;
-            color: var(--dark);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        
-        .food:hover .food-name {
-            color: var(--primary);
-            
-        }
-        
-        .food-img {
-            width: 50px;
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
-        
-        .food:hover .food-img {
-            transform: scale(1.1);
-        }
-        
-        .card-list {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            gap: 30px;
-            flex-wrap: wrap;
-            max-width: 1050px;
-            margin: 0 auto;
-        }
-        
-        .card {
-            position: relative;
-            width: 330px;
-            min-height: 450px;
-            background-color: var(--light);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .food-card {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding-top: 15px;
-        }
-        
-        .card-img {
-            width: 300px;
-            height: 200px;
-            border-radius: 15px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .card:hover .card-img {
-            transform: scale(1.03);
-        }
-        
-        .gram {
-            margin-top: 5px;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            gap: 25px;
-            font-size: 12px;
-            color: var(--gray);
-            width: 300px;
-        }
-        
-        .card-name {
-            margin: 10px 0 5px 0;
-            text-align: center;
-            font-size: 20px;
-            color: var(--dark);
-            font-weight: 700;
-        }
-        
-        .card-description {
-            color: var(--dark);
-            margin: 0;
-            padding: 0 15px;
-            font-size: 14px;
-            margin-top: 10px;
-            text-align: center;
-            line-height: 1.5;
-            opacity: 0.8;
-        }
-        
-        .card-price {
-            position: absolute;
-            bottom: 75px;
-            margin: 0;
-            padding: 0;
-            margin-top: 8px;
-            padding-left: 5px;
-            font-size: 18px;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .card-button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            background: var(--secondary);
-            border: none;
-            font-family: "Montserrat", sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 12px 30px;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            width: 90%;
-        }
-        
-        .card-button:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .card-button:active {
-            transform: translateX(-50%) scale(0.98);
-        }
-        
-        .card-button:focus {
-            outline: 2px solid var(--primary-light);
-            outline-offset: 2px;
-        }
-        
-        /* Стили для кастомных радиокнопок */
-        .card-size {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .size-option {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-        }
-        
-        .size-option input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-        
-        .size-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--neutral);
-            border-radius: 50%;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        
-        .size-option input:checked ~ .size-label {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .header-div {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .food-selection {
-                gap: 15px;
-            }
-            
-            .card {
-                width: 100%;
-                max-width: 330px;
-            }
-        }
-
-
-
-        .nav-basket {
+.nav a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.3s ease;
   position: relative;
+}
 
+.nav a:hover {
+  color: var(--primary);
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.nav-user,
+.nav-basket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.user-img,
+.cart-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.body-div {
+  padding: 30px 20px;
+}
+
+.food-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  max-width: 1050px;
+  margin: 0 auto 50px auto;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--light);
+  box-shadow: var(--shadow);
+}
+
+.food {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+
+.food:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 140, 0, 0.193);
+}
+
+.food.active {
+  transform: translateY(-3px);
+  background-color: rgba(255, 140, 0, 0.193);
+}
+
+.food.active .food-name {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.food:active {
+  transform: scale(0.98);
+}
+
+.food .food-name {
+  margin: 10px 0 0 0;
+  color: var(--dark);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.food:hover .food-name {
+  color: var(--dark);
+}
+
+.food-img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.food:hover .food-img {
+  transform: scale(1.1);
+}
+
+.card-list {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  width: 330px;
+  min-height: 450px;
+  background-color: var(--light);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.food-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15px;
+}
+
+.card-img {
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img {
+  transform: scale(1.03);
+}
+
+.gram {
+  margin-top: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 25px;
+  font-size: 12px;
+  color: var(--gray);
+  width: 300px;
+}
+
+.card-name {
+  margin: 10px 0 5px 0;
+  text-align: center;
+  font-size: 20px;
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.card-description {
+  color: var(--dark);
+  margin: 0;
+  padding: 0 15px;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.card-price {
+  position: absolute;
+  bottom: 75px;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+  padding-left: 5px;
+  font-size: 18px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.card-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background: var(--secondary);
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 12px 30px;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  width: 90%;
+}
+
+.card-button:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-button:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+.card-button:focus {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+}
+
+/* Стили для кастомных радиокнопок */
+.card-size {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.size-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.size-option input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.size-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--neutral);
+  border-radius: 50%;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.size-option input:checked ~ .size-label {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .header-div {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .food-selection {
+    gap: 15px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 330px;
+  }
+}
+
+.nav-basket {
+  position: relative;
 }
 
 .cart-counter {
@@ -373,7 +371,6 @@
   font-weight: bold;
 }
 
-
 /* Стили для пустой категории */
 .empty-category {
   text-align: center;
@@ -385,8 +382,6 @@
 
 /* Улучшенные стили для счетчика корзины */
 
-
-
 /* Анимация для карточек при добавлении в корзину */
 .card-button {
   transition: all 0.3s ease;
@@ -397,3 +392,303 @@
   transform: translateX(-50%) scale(0.95);
 }
 
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    45,
+    55,
+    72,
+    0.7
+  ); /* Используем var(--dark) с прозрачностью */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  padding: 15px;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  padding: 10px;
+}
+
+.popup {
+  background-color: var(--light);
+  border-radius: 20px;
+  box-shadow: var(--shadow-hover);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 30px;
+  position: relative;
+  transform: translateY(-50px) scale(0.95);
+  transition: all 0.4s ease;
+  border: 2px solid var(--neutral);
+}
+
+.popup-overlay.active .popup {
+  transform: translateY(0) scale(1);
+}
+
+.popup-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--gray);
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-close:hover {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.popup-title {
+  color: var(--dark);
+  margin-bottom: 25px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.popup-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+.popup-form .form-group {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.popup-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 15px;
+}
+
+.popup-form .form-control {
+  width: 95%;
+  padding: 14px 16px;
+  border: 2px solid var(--neutral);
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: var(--light);
+  color: var(--dark);
+  font-family: "Montserrat", sans-serif;
+}
+
+.popup-form .form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.popup-form textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.popup-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* Улучшенные стили для кнопок */
+.btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  background-color: #d73432;
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+/* Анимация появления элементов формы */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.popup-form .form-group {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.popup-form .form-group:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.popup-form .form-group:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.popup-form .form-group:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.popup-form .form-group:nth-child(4) {
+  animation-delay: 0.25s;
+}
+.popup-form .form-group:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.popup-form .form-actions {
+  animation: fadeIn 0.4s ease 0.35s forwards;
+}
+
+/* Стили для уведомлений */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-hover);
+  z-index: 2100;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Дополнительные улучшения для полей ввода */
+.form-control::placeholder {
+  color: var(--gray);
+  font-size: 15px;
+}
+
+/* Стили для переключателей и чекбоксов */
+.preference-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.preference-item input[type="checkbox"] {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* Адаптивность */
+@media (max-width: 576px) {
+  .popup {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .popup-title {
+    font-size: 20px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .popup-form .form-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 426px) {
+  .popup-overlay {
+    width: 100%;
+  }
+  .popup {
+    width: 80%;
+  }
+  .popup-form .form-control {
+    width: 90%;
+  }
+}
+
+@media (max-width: 376px) {
+  .popup-overlay {
+    width: 95%;
+  }
+  .popup {
+    max-width: 95%;
+  }
+  .popup-form .form-control {
+    width: 85%;
+  }
+}

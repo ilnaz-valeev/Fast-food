@@ -158,7 +158,7 @@ function activateCategory(categoryId) {
   const activeItem = document.getElementById(categoryId);
   if (activeItem) {
     activeItem.classList.add("active");
-    activeItem.querySelector(".food-name").style.color = "#d73432";
+    activeItem.querySelector(".food-name").style.color = "#2d3748";
   }
 
   // Скрываем все секции

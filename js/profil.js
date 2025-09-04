@@ -1,78 +1,7 @@
 // Добавляем стили для popup-окон
 const popupStyles = document.createElement("style");
 popupStyles.textContent = `
-    .popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .popup-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .popup {
-        background-color: var(--light);
-        border-radius: 20px;
-        box-shadow: var(--shadow-hover);
-        width: 90%;
-        max-width: 500px;
-        max-height: 90vh;
-        overflow-y: auto;
-        padding: 25px;
-        position: relative;
-        transform: translateY(-50px);
-        transition: transform 0.3s ease;
-    }
-    
-    .popup-overlay.active .popup {
-        transform: translateY(0);
-    }
-    
-    .popup-close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: var(--gray);
-        transition: color 0.3s ease;
-    }
-    
-    .popup-close:hover {
-        color: var(--primary);
-    }
-    
-    .popup-title {
-        color: var(--dark);
-        margin-bottom: 20px;
-        font-size: 22px;
-        text-align: center;
-    }
-    
-    .popup-form .form-group {
-        margin-bottom: 20px;
-    }
-    
-    .popup-form .form-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        margin-top: 20px;
-    }
+
 `;
 document.head.appendChild(popupStyles);
 
