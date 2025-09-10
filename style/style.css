@@ -10,18 +10,8 @@
   --gray: #a0aec0;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
   --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
-
-  /* Цвета фона для категорий */
-  --pizza-bg: #ffe8e8;
-  --burger-bg: #fff0e0;
-  --soup-bg: #e6f7ff;
-  --hot-bg: #fff5e6;
-  --fish-bg: #e0f3ff;
-  --sushi-bg: #ffeee6;
-  --dessert-bg: #ffe6f2;
-  --drink-bg: #e6f9ff;
-  --default-bg: var(--light);
 }
+
 
 body {
   margin: 0;
@@ -32,6 +22,29 @@ body {
   color: var(--dark);
   line-height: 1.6;
 }
+
+.advantages{
+display: flex;
+justify-content: space-between;
+max-width: 1090px;
+margin: 0 auto;
+
+}
+.advantage{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 15px;
+      box-shadow: var(--shadow);
+}
+.advantage__head{
+
+}
+
+
 
 .header-div {
   display: flex;
@@ -72,20 +85,15 @@ body {
   color: var(--primary);
 }
 
-.nav a::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--primary);
-  transition: width 0.3s ease;
-}
+
 
 .nav a:hover::after {
   width: 100%;
 }
+.nav-img{
+    width: 40px;
+}
+
 
 .nav-user,
 .nav-basket {
@@ -357,7 +365,7 @@ body {
 
 .cart-counter {
   position: absolute;
-  top: -8px;
+  top: -10px;
   right: -8px;
   background-color: #d73432;
   color: white;
