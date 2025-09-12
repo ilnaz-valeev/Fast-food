@@ -23,28 +23,6 @@ body {
   line-height: 1.6;
 }
 
-.advantages{
-display: flex;
-justify-content: space-between;
-max-width: 1090px;
-margin: 0 auto;
-
-}
-.advantage{
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 15px;
-      box-shadow: var(--shadow);
-}
-.advantage__head{
-
-}
-
-
 
 .header-div {
   display: flex;
@@ -57,6 +35,8 @@ margin: 0 auto;
   top: 0;
   z-index: 100;
   margin-bottom: 30px;
+  position: fixed;
+  width: 100%;
 }
 
 .header-title {
@@ -109,6 +89,64 @@ margin: 0 auto;
   height: 28px;
   object-fit: contain;
 }
+
+
+
+
+.hero{
+    display: flex;
+    justify-content: center;
+    margin-top: 130px;
+
+}
+
+.promo-section{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.promo-cards{
+
+}
+
+.popular{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+
+.popular-items{
+
+}
+
+
+
+.advantages{
+display: flex;
+justify-content: space-between;
+max-width: 1090px;
+margin: 0 auto;
+text-align: center;
+    margin-top: 50px;
+}
+.advantage{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 15px;
+      box-shadow: var(--shadow);
+}
+.advantage__head{
+
+}
+
 
 .body-div {
   padding: 30px 20px;
@@ -215,7 +253,7 @@ margin: 0 auto;
 }
 
 .card-img {
-  width: 300px;
+  max-width: 300px;
   height: 200px;
   border-radius: 15px;
   object-fit: cover;
@@ -234,7 +272,7 @@ margin: 0 auto;
   gap: 25px;
   font-size: 12px;
   color: var(--gray);
-  width: 300px;
+  max-width: 300px;
 }
 
 .card-name {
@@ -655,6 +693,25 @@ margin: 0 auto;
   accent-color: var(--primary);
   cursor: pointer;
 }
+ 
+@media(max-width: 1024px){
+    .advantages{
+justify-content: space-around;
+
+
+}
+}
+
+@media(max-width: 768px){
+    .advantages{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+
+}
 
 /* Адаптивность */
 @media (max-width: 576px) {
@@ -687,6 +744,17 @@ margin: 0 auto;
   .popup-form .form-control {
     width: 90%;
   }
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 800px; /* или auto, если хотите шире */
+  margin: 0 auto;
+}
+.card {
+  width: 100%;
+  min-width: 0;
+}
 }
 
 @media (max-width: 376px) {
