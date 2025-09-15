@@ -6,7 +6,7 @@
   --primary: #e63946;
   --primary-light: #f8a8ae;
   --secondary: #f9a826;
-  --neutral-light: #ffd699;
+  --neutral-light: #ffe4d0;
   --neutral: #f1d6b8;
   --accent: #7bc8a4;
   --dark: #2d3748;
@@ -15,6 +15,11 @@
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
   --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
   --container-background: #f7f7f7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -728,9 +733,37 @@ body {
   cursor: pointer;
 }
 
+footer {
+  background-color: var(--container-background);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    text-align: center;
+          display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 столбца */
+    gap: 20px; /* промежуток между блоками */
+}
+
+
+
+.icons-link{
+
+    color: #2d3748;
+}
+
 @media (max-width: 1024px) {
   .advantages {
     justify-content: space-around;
+  }
+  .footer-content{
+      display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 3 столбца */
+  gap: 20px; /* промежуток между блоками */
+  
   }
 }
 

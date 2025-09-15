@@ -3,13 +3,14 @@
   --primary-light: #ffd6d6;
   --secondary: #ffb347;
   --accent: #7bc8a4;
-  --neutral-light: #fff8f0;
+  --neutral-light: #ffe4d0;
   --neutral: #ffe4d0;
   --dark: #5d4037;
   --light: #ffffff;
   --gray: #a89f9a;
   --shadow: 0 4px 12px rgba(94, 64, 55, 0.08);
   --shadow-hover: 0 8px 20px rgba(94, 64, 55, 0.12);
+    --container-background: #f7f7f7;
 }
 
 * {
@@ -96,7 +97,7 @@ body {
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--primary-light);
+  border: 4px solid var(--neutral);
   box-shadow: var(--shadow);
 }
 
