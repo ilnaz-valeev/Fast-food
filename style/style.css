@@ -101,16 +101,32 @@ body {
   margin-top: 130px;
 }
 .hero-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: var(--container-background);
   border-radius: 20px 0px 0px 20px;
   padding: 15px;
   box-shadow: var(--shadow);
+}
+.hero-content h2 {
+}
+.hero-content p {
+  margin-top: 10px;
+}
+.hero-content p {
 }
 .hero-image {
   background-color: var(--container-background);
   border-radius: 0px 20px 20px 0px;
   padding: 15px;
   box-shadow: var(--shadow);
+  max-width: 400px;
+}
+.hero-img {
+  width: 400px;
+  border-radius: 20px;
 }
 .cta-button {
   padding: 12px 30px;
@@ -123,10 +139,11 @@ body {
   font-size: 16px;
   background: linear-gradient(to right, var(--primary), var(--secondary));
   color: white;
+  margin-top: 10px;
 }
 
 .promo-section__head {
-  background-color: var(--container-background);
+  background-color: var(--neutral-light);
   border-radius: 20px;
   padding: 15px;
   box-shadow: var(--shadow);
@@ -146,7 +163,7 @@ body {
 }
 
 .promo-card {
-  background-color: var(--container-background);
+  background-color: var(--neutral-light);
   border-radius: 20px;
   padding: 15px;
   box-shadow: var(--shadow);
@@ -184,7 +201,14 @@ body {
   padding: 15px;
   box-shadow: var(--shadow);
 }
+.advantage img {
+  height: 70px;
+}
+.advantage p {
+  margin-top: 10px;
+}
 .advantage__head {
+  margin-top: 5px;
 }
 
 .body-div {
@@ -738,32 +762,42 @@ footer {
   border-radius: 20px 20px 0px 0px;
 }
 
-.footer-content{
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    text-align: center;
-          display: grid;
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  text-align: center;
+  display: grid;
   grid-template-columns: repeat(4, 1fr); /* 3 столбца */
-    gap: 20px; /* промежуток между блоками */
+  gap: 20px; /* промежуток между блоками */
 }
 
+.footer-section__input {
+  border: none;
+  border-radius: 10px 0px 0px 10px;
+  padding: 10px;
+    box-shadow: var(--shadow);
+}
+.footer-section-button {
+  border: none;
+  padding: 10px;
+  border-radius: 0px 10px 10px 0px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
 
-
-.icons-link{
-
-    color: #2d3748;
+}
+.icons-link {
+  color: #2d3748;
 }
 
 @media (max-width: 1024px) {
   .advantages {
     justify-content: space-around;
   }
-  .footer-content{
-      display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 3 столбца */
-  gap: 20px; /* промежуток между блоками */
-  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 столбца */
+    gap: 20px; /* промежуток между блоками */
   }
 }
 
@@ -773,6 +807,13 @@ footer {
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+  }
+  .hero {
+    margin: 150px 20px 0px 20px;
+  }
+  .hero-img {
+    width: 250px;
+    height: 100%;
   }
 }
 
@@ -798,6 +839,15 @@ footer {
 }
 
 @media (max-width: 426px) {
+  .hero-content {
+    border-radius: 20px;
+  }
+  .hero-img {
+    display: none;
+  }
+  .hero-image {
+    display: none;
+  }
   .promo-section {
   }
   .popup-overlay {
