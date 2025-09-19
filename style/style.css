@@ -772,11 +772,16 @@ footer {
   gap: 20px; /* промежуток между блоками */
 }
 
+.footer-section__header{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .footer-section__input {
   border: none;
   border-radius: 10px 0px 0px 10px;
   padding: 10px;
     box-shadow: var(--shadow);
+    max-width: 100px;
 }
 .footer-section-button {
   border: none;
@@ -874,7 +879,15 @@ footer {
     max-height: 150px;
     width: 150px;
   }
+  .footer-section__input {
+
+    max-width: 60px;
 }
+.footer-section-button{
+    max-width: 100px;
+}
+}
+
 
 @media (max-width: 376px) {
   .popup-overlay {
@@ -892,4 +905,12 @@ footer {
   .card-description {
     font-size: 12px;
   }
+    .footer-section__input {
+
+    max-width: 50px;
+}
+.footer-section-button{
+    padding: 10px 10px 10px 5px;
+    max-width: 90px;
+}
 }
