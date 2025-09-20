@@ -174,8 +174,8 @@ body {
 }
 
 .cart-item-price {
-  color: var(--primary);
-  font-weight: 700;
+  color: var(--dark);
+  font-weight: 500;
   font-size: 18px;
 }
 
@@ -271,7 +271,7 @@ body {
 }
 
 .total-value {
-  color: var(--primary);
+  color: var(--dark);
 }
 
 .delivery-options {
