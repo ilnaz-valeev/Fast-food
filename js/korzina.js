@@ -118,7 +118,7 @@ function updateOrderSummary(totalItems, totalPrice) {
   const appliedPromo = localStorage.getItem("appliedPromo");
   let promoDiscount = 0;
 
-  if (appliedPromo === "FASTFOOD10") {
+  if (appliedPromo === "WELCOME") {
     promoDiscount = Math.round(totalPrice * 0.1); // 10% скидка
   }
 
@@ -128,8 +128,8 @@ function updateOrderSummary(totalItems, totalPrice) {
   const summaryLabel = document.querySelector(".summary-label");
   if (summaryLabel) summaryLabel.textContent = `Товары (${totalItems})`;
 
-  const summaryValue = document.querySelector(".summary-value:first-child");
-  if (summaryValue) summaryValue.textContent = `${totalPrice} ₽`;
+const summaryValue = document.querySelector(".summary-value-total");
+if (summaryValue) summaryValue.textContent = `${totalPrice} ₽`;
 
   const discountElement = document.querySelector(
     '.summary-value[style*="color: var(--accent)"]'
@@ -256,14 +256,20 @@ function checkout() {
     'input[name="delivery"]:checked'
   ).id;
 
+  const amount = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   // Создаем объект заказа
-  const order = {
-    id: Date.now(),
-    date: new Date().toLocaleDateString("ru-RU"),
-    items: cart,
-    delivery: deliveryMethod,
-    status: "processing",
-  };
+const order = {
+  id: Date.now(),
+  date: new Date().toLocaleDateString("ru-RU"),
+  items: cart,
+  delivery: deliveryMethod,
+  status: "processing",
+  amount: amount + 200, // если хотите включить доставку (200 — стоимость доставки)
+  // или просто amount: amount, если только сумма товаров
+};
 
   // Сохраняем заказ в историю (в реальном приложении здесь был бы запрос к серверу)
   const userData = JSON.parse(localStorage.getItem("userData")) || {};

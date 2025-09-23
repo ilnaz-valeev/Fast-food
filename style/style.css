@@ -622,8 +622,8 @@ body {
 
 .popup-form .form-control:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
+  border-color: var(--neutral);
+  box-shadow: 0 0 0 3px var(--neutral-light);
 }
 
 .popup-form textarea.form-control {
