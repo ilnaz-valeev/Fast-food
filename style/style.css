@@ -31,6 +31,9 @@ body {
   color: var(--dark);
   line-height: 1.6;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 .header-div {
   display: flex;
@@ -219,10 +222,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+
   flex-wrap: wrap;
   max-width: 1050px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto 0 auto;
   gap: 30px;
   padding: 20px;
   border-radius: 20px;
@@ -289,6 +292,7 @@ body {
   flex-wrap: wrap;
   max-width: 1050px;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 .card {
@@ -458,6 +462,7 @@ body {
     width: 100%;
     max-width: 330px;
   }
+
 }
 
 .nav-basket {
@@ -807,6 +812,19 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+  .header-div {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    z-index: 100;
+    margin-bottom: 0;
+    box-shadow: var(--shadow);
+    border-radius: 20px 20px 0 0;
+  }
   .advantages {
     display: flex;
     justify-content: center;
@@ -814,11 +832,14 @@ footer {
     gap: 20px;
   }
   .hero {
-    margin: 150px 20px 0px 20px;
+    margin: 30px 20px 0px 20px;
   }
   .hero-img {
     width: 250px;
     height: 100%;
+  }
+  .footer-content{
+    margin-bottom: 100px;
   }
 }
 
@@ -844,6 +865,9 @@ footer {
 }
 
 @media (max-width: 426px) {
+    .hero{
+        margin-top: 20px;
+    }
   .hero-content {
     border-radius: 20px;
   }
@@ -870,6 +894,7 @@ footer {
     gap: 10px;
     max-width: 800px; /* или auto, если хотите шире */
     margin: 0 auto;
+    margin-top: 50px;
   }
   .card {
     width: 100%;

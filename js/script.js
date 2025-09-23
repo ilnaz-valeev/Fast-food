@@ -143,8 +143,15 @@ function renderCards(category, sectionId) {
   }
 }
 
+function scrollWithOffset(element, offset = 80) {
+  const rect = element.getBoundingClientRect();
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const top = rect.top + scrollTop - offset;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
 // Функция для активации категории
-function activateCategory(categoryId) {
+function activateCategory(categoryId, doScroll = true) {
   // Получаем все элементы с классом .food
   const foodItems = document.querySelectorAll(".food");
 
@@ -181,12 +188,30 @@ function activateCategory(categoryId) {
   // Показываем соответствующую секцию
   const activeSection = document.getElementById(`${categoryId}-section`);
   if (activeSection) activeSection.style.display = "block";
+
+  // Скроллим только если doScroll === true
+  if (doScroll) {
+    if (window.innerWidth > 1024) {
+      const foodSelection = document.querySelector(".food-selection");
+      if (foodSelection) {
+        scrollWithOffset(foodSelection, 80);
+      }
+    } else {
+      const activeSection = document.getElementById(`${categoryId}-section`);
+      const cardList = activeSection
+        ? activeSection.querySelector(".card-list")
+        : null;
+      if (cardList) {
+        scrollWithOffset(cardList, 30);
+      }
+    }
+  }
 }
 
 // Инициализация при загрузке страницы
 document.addEventListener("DOMContentLoaded", function () {
   // Активируем первую категорию (пиццу) по умолчанию
-  activateCategory("pizza");
+  activateCategory("pizza", false);
 
   // Рендерим карточки для всех категорий
   renderCards("pizza", "pizza-section");
@@ -214,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const categoryElement = document.getElementById(categoryId);
     if (categoryElement) {
       categoryElement.addEventListener("click", () =>
-        activateCategory(categoryId)
+        activateCategory(categoryId, true)
       );
     }
   });
